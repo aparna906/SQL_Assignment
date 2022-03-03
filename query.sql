@@ -22,7 +22,7 @@ Query: SHOW COLUMNS FROM order_item;
 Query: SELECT FIRST_NAME,MIDDLE_NAME,LAST_NAME,BIRTH_DATE,
        EMPLOYMENT_STATUS_ENUM_ID,OCCUPATION,GENDER
        FROM sqlschema.person
-       WHERE GENDER = 'F';;
+       WHERE GENDER = 'F';
 
        +------------+-------------+-----------+------------+---------------------------+-------------------+--------+
        | FIRST_NAME | MIDDLE_NAME | LAST_NAME | BIRTH_DATE | EMPLOYMENT_STATUS_ENUM_ID | OCCUPATION        | GENDER |
