@@ -20,7 +20,7 @@ Query: SHOW COLUMNS FROM order_item;
 2. List the person details for all females.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Query: SELECT FIRST_NAME,MIDDLE_NAME,LAST_NAME,BIRTH_DATE,
-              EMPLOYMENT_STATUS_ENUM_ID,OCCUPATION,GENDER
+       EMPLOYMENT_STATUS_ENUM_ID,OCCUPATION,GENDER
        FROM sqlschema.person
        WHERE GENDER = 'F';;
 
