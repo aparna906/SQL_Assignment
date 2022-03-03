@@ -1,46 +1,36 @@
 1.List all columns of Order_Item table.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Query: SELECT * FROM order_item;
+Query: SHOW COLUMNS FROM order_item;
 
-        +----------+-------------------+-------------------+-------------+-------------------------+----------+-------------+-------------------+--------------------+
-        | ORDER_ID | ORDER_ITEM_SEQ_ID | ORDER_PART_SEQ_ID | PRODUCT_ID  | ITEM_DESCRIPTION        | QUANTITY | UNIT_AMOUNT | ITEM_TYPE_ENUM_ID | PARENT_ITEM_SEQ_ID |
-        +----------+-------------------+-------------------+-------------+-------------------------+----------+-------------+-------------------+--------------------+
-        | 100051   | 01                | 01                | DEMO_UNIT_1 | Demo Product Unit One   | 1.000000 |    16.99000 | ItemProduct       | null               |
-        | 100051   | 02                | 02                | DEMO_UNIT_2 | Demo Product Unit Two   | 3.000000 |    18.99000 | ItemProduct       | null               |
-        | 100051   | 03                | 02                | null        | Sales Tax               | 3.000000 |     1.33000 | ItemSalesTax      | null               |
-        | 100052   | 01                | 01                | DEMO_UNIT_3 | Demo Product Unit Three | 1.000000 |    14.99000 | ItemProduct       | null               |
-        | 100052   | 02                | 01                | null        | Sales Tax               | 1.000000 |     1.33000 | ItemSalesTax      | 01                 |
-        | 100061   | 01                | 01                | DEMO_UNIT_2 | Demo Product Unit Two   | 2.000000 |    15.99000 | ItemProduct       | null               |
-        | 100061   | 02                | 02                | DEMO_UNIT_5 | Demo Product Unit Five  | 1.000000 |    55.09000 | ItemProduct       | null               |
-        | 100064   | 01                | 01                | DEMO_UNIT_5 | Demo Product Unit Five  | 3.000000 |    12.07000 | ItemProduct       | null               |
-        | 100064   | 02                | 02                | DEMO_UNIT_2 | Demo Product Unit Two   | 2.000000 |     6.33000 | ItemProduct       | null               |
-        | 100102   | 01                | 01                | DEMO_UNIT_1 | Demo Product Unit One   | 3.000000 |    16.99000 | ItemProduct       | null               |
-        | 100102   | 02                | 01                | DEMO_UNIT_2 | Demo Product Unit Two   | 3.000000 |    18.99000 | ItemProduct       | null               |
-        | 100102   | 03                | 01                | null        | Sales Tax               | 3.000000 |     2.33000 | ItemSalesTax      | 02                 |
-        | 100102   | 04                | 02                | DEMO_UNIT_3 | Demo Product Unit Three | 1.000000 |    14.99000 | ItemProduct       | null               |
-        | 100153   | 01                | 01                | DEMO_UNIT_3 | Demo Product Unit Three | 1.000000 |    14.99000 | ItemProduct       | null               |
-        | 100153   | 02                | 01                | null        | Sales Tax               | 1.000000 |     1.33000 | ItemSalesTax      | 01                 |
-        | 100153   | 03                | 01                | DEMO_UNIT_4 | Demo Product Unit Four  | 1.000000 |    12.99000 | ItemProduct       | null               |
-        | 100153   | 04                | 01                | null        | Sales Tax               | 1.000000 |     2.33000 | ItemSalesTax      | 03                 |
-        | 100255   | 01                | 01                | DEMO_UNIT_4 | Demo Product Unit Four  | 3.000000 |    12.99000 | ItemProduct       | null               |
-        | 100255   | 02                | 01                | null        | Sales Tax               | 3.000000 |     1.33000 | ItemSalesTax      | 01                 |
-        | 100255   | 03                | 02                | DEMO_UNIT_5 | Demo Product Unit Five  | 3.000000 |    10.99000 | ItemProduct       | null               |
-        +----------+-------------------+-------------------+-------------+-------------------------+----------+-------------+-------------------+--------------------+
+     +--------------------+---------------+------+-----+---------+-------+
+     | Field              | Type          | Null | Key | Default | Extra |
+     +--------------------+---------------+------+-----+---------+-------+
+     | ORDER_ID           | varchar(40)   | NO   | PRI | NULL    |       |
+     | ORDER_ITEM_SEQ_ID  | varchar(40)   | NO   | PRI | NULL    |       |
+     | ORDER_PART_SEQ_ID  | varchar(40)   | YES  |     | NULL    |       |
+     | PRODUCT_ID         | varchar(40)   | YES  | MUL | NULL    |       |
+     | ITEM_DESCRIPTION   | varchar(255)  | YES  |     | NULL    |       |
+     | QUANTITY           | decimal(26,6) | YES  |     | NULL    |       |
+     | UNIT_AMOUNT        | decimal(25,5) | YES  |     | NULL    |       |
+     | ITEM_TYPE_ENUM_ID  | varchar(40)   | YES  |     | NULL    |       |
+     | PARENT_ITEM_SEQ_ID | varchar(40)   | YES  |     | NULL    |       |
+     +--------------------+---------------+------+-----+---------+-------+
 
 
 2. List the person details for all females.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Query: SELECT FIRST_NAME,MIDDLE_NAME,LAST_NAME,BIRTH_DATE,
-       EMPLOYMENT_STATUS_ENUM_ID,OCCUPATION
-       FROM person
-       WHERE SALUTATION = 'Ms';
+              EMPLOYMENT_STATUS_ENUM_ID,OCCUPATION,GENDER
+       FROM sqlschema.person
+       WHERE GENDER = 'F';;
 
-       +------------+-------------+-----------+------------+---------------------------+-------------------+
-       | FIRST_NAME | MIDDLE_NAME | LAST_NAME | BIRTH_DATE | EMPLOYMENT_STATUS_ENUM_ID | OCCUPATION        |
-       +------------+-------------+-----------+------------+---------------------------+-------------------+
-       | Lily       | J           | Brown     | 1998-06-11 | EmpsPartTime              | Software Engineer |
-       | John       | J           | Norvig    | 1998-06-11 | EmpsFullTime              | Software Engineer |
-       +------------+-------------+-----------+------------+---------------------------+-------------------+
+       +------------+-------------+-----------+------------+---------------------------+-------------------+--------+
+       | FIRST_NAME | MIDDLE_NAME | LAST_NAME | BIRTH_DATE | EMPLOYMENT_STATUS_ENUM_ID | OCCUPATION        | GENDER |
+       +------------+-------------+-----------+------------+---------------------------+-------------------+--------+
+       | Lily       | J           | Brown     | 1998-06-11 | EmpsPartTime              | Software Engineer | F      |
+       | John       | J           | Norvig    | 1998-06-11 | EmpsFullTime              | Software Engineer | F      |
+       +------------+-------------+-----------+------------+---------------------------+-------------------+--------+
+
 
 
 3.List the Order_header table contents so that the latest placed order appears in the top.
@@ -128,7 +118,7 @@ Query: SELECT * FROM person
       | PARTY_ID  | SALUTATION | FIRST_NAME | MIDDLE_NAME | LAST_NAME | GENDER | BIRTH_DATE | MARITAL_STATUS_ENUM_ID | EMPLOYMENT_STATUS_ENUM_ID | OCCUPATION        |
       +-----------+------------+------------+-------------+-----------+--------+------------+------------------------+---------------------------+-------------------+
       | CustDemo4 | Ms         | John       | J           | Norvig    | F      | 1998-06-11 | MarsSingle             | EmpsFullTime              | Software Engineer |
-      +-----------+------------+------------+-------------+-----------+--------+------------+------------------------+---------------------------+-------------------+
+      +-----------+---- --------+------------+-------------+-----------+--------+------------+------------------------+---------------------------+-------------------+
 
 
 9.List all Order Item details for the order with orderId 100102 and orderPartSeqId 01.
